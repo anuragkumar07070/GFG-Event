@@ -1,0 +1,90 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ product['Name'] }} - Details</title>
+</head>
+<body>
+    <h1>{{ product['Name'] }} ({{ product['Category'] }})</h1>
+    <p><strong>Description:</strong> {{ product['Description'] }}</p>
+    <h3>Pros:</h3>
+    <ul>
+        <li>{{ product['Pros'] }}</li>
+    </ul>
+    <h3>Cons:</h3>
+    <ul>
+        <li>{{ product['Cons'] }}</li>
+    </ul>
+    <p><strong>Price:</strong> ${{ product['Price'] }}</p>
+
+    <a href="/">Back to Home</a>
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ product['Name'] }} - Details</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .product-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+        .product-details {
+            margin-top: 20px;
+        }
+        .product-details h1 {
+            margin-bottom: 20px;
+        }
+        .list-group-item {
+            background-color: #f8f9fa;
+            border: 1px solid #ddd;
+        }
+        .btn-back {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Product Details -->
+        <div class="row product-details">
+            <div class="col-md-6">
+                <!-- Assuming product image URL is provided -->
+                <img src="{{ product['ImageURL'] }}" alt="{{ product['Name'] }}" class="img-fluid product-image">
+            </div>
+            <div class="col-md-6">
+                <h1>{{ product['Name'] }}</h1>
+                <p class="lead text-muted">Category: {{ product['Category'] }}</p>
+                <p><strong>Description:</strong> {{ product['Description'] }}</p>
+                <p><strong>Price:</strong> ${{ product['Price'] }}</p>
+                <h4>Pros:</h4>
+                <ul class="list-group mb-4">
+                    {% for pro in product['Pros'] %}
+                    <li class="list-group-item">{{ pro }}</li>
+                    {% endfor %}
+                </ul>
+                <h4>Cons:</h4>
+                <ul class="list-group">
+                    {% for con in product['Cons'] %}
+                    <li class="list-group-item">{{ con }}</li>
+                    {% endfor %}
+                </ul>
+                <a href="/" class="btn btn-primary btn-back">Back to Home</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>

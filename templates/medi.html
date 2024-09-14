@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medicine Information</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            margin-top: 20px;
+        }
+        .medicine-card {
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            padding: 15px;
+            text-align: center;
+        }
+        .medicine-card img {
+            max-width: 150px;
+            height: auto;
+            margin-bottom: 15px;
+        }
+        .medicine-card h4 {
+            margin-bottom: 10px;
+        }
+        .medicine-card p {
+            margin-bottom: 10px;
+        }
+        .medicine-card .price {
+            font-size: 1.2em;
+            color: #ff6600;
+            margin-bottom: 15px;
+        }
+        .medicine-card .pros, .medicine-card .cons {
+            text-align: left;
+        }
+        .medicine-card .pros ul, .medicine-card .cons ul {
+            padding-left: 20px;
+        }
+        .medicine-card .btn {
+            background-color: #ff6600;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <header class="container text-center">
+        <h1>Medicine Information</h1>
+    </header>
+    
+    <section class="container">
+        <div id="medicine-cards" class="row">
+        </div>
+    </section>
+    
+    <footer class="container text-center">
+        <p>&copy; 2024 Medicine Information</p>
+    </footer>
+
+    <script>
+        const medicines = [
+            {
+                category: 'Medicine',
+                name: 'PCM',
+                pros: ['Effective pain relief', 'Reduces fever', 'Generally well-tolerated'],
+                cons: ['Can cause liver damage if overdosed', 'May interact with other medications', 'Not suitable for people with liver disease'],
+                description: 'PCM is a commonly used analgesic and antipyretic, helpful in reducing fever and relieving mild to moderate pain.',
+                price: '5.00',
+                image: '/static/GfgImages/PCM.jpg'
+            },
+            {
+                category: 'Medicine',
+                name: 'Dolo',
+                pros: ['Effective for pain and fever', 'Generally safe at recommended doses', 'Affordable'],
+                cons: ['Possible side effects include nausea', 'Liver damage at high doses', 'Not suitable for chronic use'],
+                description: 'Dolo is a brand of paracetamol used for relieving pain and reducing fever. It is commonly used and affordable.',
+                price: '4.00',
+                image: '/static/GfgImages/Dolo.jpg'
+            },
+        ];
+
+        function createMedicineCards() {
+            const container = document.getElementById('medicine-cards');
+            medicines.forEach(medicine => {
+                const card = document.createElement('div');
+                card.className = 'col-md-4';
+                card.innerHTML = `
+                    <div class="medicine-card">
+                        <img src="${medicine.image}" alt="${medicine.name}">
+                        <h4>${medicine.name}</h4>
+                        <p><strong>Description:</strong> ${medicine.description}</p>
+                        <p class="price"><strong>Price:</strong> $${medicine.price}</p>
+                        <p><strong>Pros:</strong></p>
+                        <ul class="pros">
+                            ${medicine.pros.map(pro => `<li>${pro}</li>`).join('')}
+                        </ul>
+                        <p><strong>Cons:</strong></p>
+                        <ul class="cons">
+                            ${medicine.cons.map(con => `<li>${con}</li>`).join('')}
+                        </ul>
+                        <a href="#" class="btn">Buy Now</a>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        createMedicineCards();
+    </script>
+</body>
+</html>
